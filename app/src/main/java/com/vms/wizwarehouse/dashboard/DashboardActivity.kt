@@ -65,7 +65,7 @@ class DashboardActivity : AppCompatActivity() {
     //_______________________________________________
     var locationRefresh: ImageView? = null
     var locationAddress: TextView? = null
-    var checkIn: ImageView? = null
+    lateinit var checkIn: ImageView
     var totalStock: TextView? = null
     var stockAssigned: TextView? = null
     var pendingReturn: TextView? = null
@@ -104,6 +104,14 @@ class DashboardActivity : AppCompatActivity() {
         distribute = binding.layoutDistribute
         returnStock = binding.layoutReturn
         version = binding.txtVersion
+
+        checkIn.setOnClickListener {
+            val intent = Intent(
+                this@DashboardActivity,
+                CameraActivity::class.java
+            )
+            startActivity(intent)
+        }
 
         inventory!!.setOnClickListener { view: View? ->
             val intent = Intent(
@@ -301,7 +309,8 @@ class DashboardActivity : AppCompatActivity() {
                     e
                 )
             } catch (e: JSONException) {
-                Log.e(TAG,
+                Log.e(
+                    TAG,
                     "Error processing error body: ",
                     e
                 )
@@ -565,7 +574,7 @@ class DashboardActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this,
                 permissions,
-               PERMISSION_REQUEST_CODE
+                PERMISSION_REQUEST_CODE
             )
         } else {
             // Permissions already granted
