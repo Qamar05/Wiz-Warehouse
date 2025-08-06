@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment_2.QuestionTwoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_question_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/q2_would_you_like_to_participate_in_this_survey"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/radio_yes"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.1"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <RadioButton
+                android:id="@+id/radio_yes"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:text="@string/yes"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHeight_percent="0.07"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/txt_question_one"
+                app:layout_constraintVertical_bias="0.1"
+                app:layout_constraintWidth_percent="0.85" />
+
+            <TextView
+                android:id="@+id/txt_previous"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_previous_bg"
+                android:gravity="center"
+                android:text="@string/previous"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <TextView
+                android:id="@+id/txt_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_marginTop="2dp"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.97"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                />
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_bg"
+                android:gravity="center"
+                android:text="@string/next"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bg"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <RadioButton
+                android:id="@+id/radio_no"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:text="@string/no"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHeight_percent="0.07"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/radio_yes"
+                app:layout_constraintVertical_bias="0.1"
+                app:layout_constraintWidth_percent="0.85" />
+
+            <CheckBox
+                android:id="@+id/check_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="top"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/i_hereby_declare_and_acknowledge_that_i_am_a_smoker_and_i_am_above_18_years_of_age_i_give_my_consent_to_participate_in_the_market_insights_activity_being_conducted_by_the_company"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/radio_no"
+                app:layout_constraintWidth_percent="0.85" />
+
+            <TextView
+                android:id="@+id/txt_add_signature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/add_your_signature"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/radio_no"
+                app:layout_constraintTop_toBottomOf="@id/check_box" />
+
+            <ImageView
+                android:id="@+id/img_signature"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/edit_text_background"
+                android:contentDescription="@string/signature"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/txt_previous"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/txt_add_signature"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent="0.85" />
+
+            <TextView
+                android:id="@+id/txt_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_add_bg"
+                android:gravity="center"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/add"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/img_signature"
+                app:layout_constraintEnd_toEndOf="@id/img_signature"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/img_signature"
+                app:layout_constraintTop_toTopOf="@id/img_signature"
+                app:layout_constraintVertical_bias="0.95" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

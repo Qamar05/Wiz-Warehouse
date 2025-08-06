@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/white_bg"
+        android:elevation="5dp">
+
+        <ImageView
+            android:id="@+id/imgTick"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img_update"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            />
+
+
+        <TextView
+            android:id="@+id/txtHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+           android:gravity="center"
+            android:text="@string/application_update_available"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+           android:layout_toEndOf="@id/imgTick"
+            android:textColor="@color/dark_brown"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHeader"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textSize="14sp"
+            android:text="In pellente sque diam vel tempor pulvinar diam vel tempor pulvinar"
+            android:textAlignment="center"
+            android:textColor="@color/dark_brown"
+             />
+
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_bg"
+            android:text="@string/update_now"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/txtMessage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+         />
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

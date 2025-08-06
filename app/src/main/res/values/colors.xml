@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="purple_500">#014D5F</color>
+    <color name="purple_500_dull">#014D5F</color>
+    <color name="purple_100">#20004D5F</color>
+    <color name="purple_700">#F3F4F6</color>
+    <color name="black_2">#121212</color>
+    <color name="edit_bg">#E6EDEF</color>
+    <color name="hint_color">#757575</color>
+    <color name="light_grey">#666666</color>
+    <color name="border_color">#DEDEDE</color>
+    <color name="purple_400">#004D5F</color>
+    <color name="dark_brown">#38312F</color>
+    <color name="red">#E54B4E</color>
+    <color name="view_line">#EAEAEA</color>
+    <color name="progress_bar_color">#D9D9D9</color>
+    <color name="yellow">#FFBE35</color>
+    <color name="orange">#F5821B</color>
+    <color name="orange_light">#B57841</color>
+    <color name="orange_lightest">#F7F1EC</color>
+    <color name="bg_white">#FFFFFF</color>
+</resources>

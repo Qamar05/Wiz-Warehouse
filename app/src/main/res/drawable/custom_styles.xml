@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style android:name="Circular">
+        <item android:name="cornerSize">50%</item>
+    </style>
+
+    <style android:name="RoundedSquare">
+        <item android:name="cornerSize">10%</item>
+    </style>
+
+    <style android:name="CornerCut">
+        <item android:name="cornerSize">15dp</item>
+        <item android:name="cornerFamily">cut</item>
+    </style>
+
+    <style android:name="DiamondCut">
+        <item android:name="cornerSize">75dp</item>
+        <item android:name="cornerFamily">cut</item>
+    </style>
+
+    <style android:name="SpecificCornerCut">
+        <item android:name="cornerSizeTopRight">75dp</item>
+        <item android:name="cornerFamilyTopRight">cut</item>
+        <item android:name="cornerSizeBottomLeft">75dp</item>
+        <item android:name="cornerFamilyBottomLeft">cut</item>
+    </style>
+
+    <style android:name="SpecificCornerRounded">
+        <item android:name="cornerSizeTopRight">75dp</item>
+        <item android:name="cornerFamilyTopRight">rounded</item>
+        <item android:name="cornerSizeBottomLeft">75dp</item>
+        <item android:name="cornerFamilyBottomLeft">rounded</item>
+    </style>
+
+</resources>

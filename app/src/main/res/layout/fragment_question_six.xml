@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragment_6.QuestionSixFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_question_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/q6_please_rate_for_each_of_these_attributes_on_a_scale_of_1_to_3"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/edit_feedback"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.1"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <TextView
+                android:id="@+id/txt_question_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/a_please_rate_for_product"
+                android:textColor="@color/purple_400"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/txt_question_one"
+                app:layout_constraintTop_toBottomOf="@id/txt_question_one"
+                app:layout_constraintVertical_bias="0.1" />
+
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/rating_bar_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:progressBackgroundTint="@color/yellow"
+                android:progressTint="@color/yellow"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:stepSize="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_question_two" />
+
+
+            <TextView
+                android:id="@+id/txt_question_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/b_please_rate_for_pack"
+                android:textColor="@color/purple_400"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/txt_question_one"
+                app:layout_constraintTop_toBottomOf="@id/rating_bar_1"
+                app:layout_constraintVertical_bias="0.1" />
+
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/rating_bar_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:progressBackgroundTint="@color/yellow"
+                android:progressTint="@color/yellow"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:stepSize="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_question_three" />
+
+
+            <TextView
+                android:id="@+id/txt_question_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/c_please_rate_for_stick"
+                android:textColor="@color/purple_400"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/txt_question_two"
+                app:layout_constraintTop_toBottomOf="@id/rating_bar_2"
+                app:layout_constraintVertical_bias="0.1" />
+
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/rating_bar_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:progressBackgroundTint="@color/yellow"
+                android:progressTint="@color/yellow"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:stepSize="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_question_four" />
+
+            <EditText
+                android:id="@+id/edit_feedback"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="15dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:gravity="start"
+                android:hint="@string/write_your_any_other_feedback"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/black_2"
+                android:textColorHint="@color/hint_color"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/txt_previous"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHeight_percent="0.07"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/rating_bar_3"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent="0.85" />
+
+            <TextView
+                android:id="@+id/txt_previous"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_previous_bg"
+                android:gravity="center"
+                android:text="@string/previous"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <TextView
+                android:id="@+id/txt_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text=""
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.97" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_bg"
+                android:gravity="center"
+                android:maxLength="100"
+                android:text="@string/submit"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toTopOf="@id/constraint_1"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintWidth_percent="0.45" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
