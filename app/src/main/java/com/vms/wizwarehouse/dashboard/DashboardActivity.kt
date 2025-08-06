@@ -105,13 +105,13 @@ class DashboardActivity : AppCompatActivity() {
         returnStock = binding.layoutReturn
         version = binding.txtVersion
 
-        checkIn.setOnClickListener {
-            val intent = Intent(
-                this@DashboardActivity,
-                CameraActivity::class.java
-            )
-            startActivity(intent)
-        }
+//        checkIn.setOnClickListener {
+//            val intent = Intent(
+//                this@DashboardActivity,
+//                CameraActivity::class.java
+//            )
+//            startActivity(intent)
+//        }
 
         inventory!!.setOnClickListener { view: View? ->
             val intent = Intent(
