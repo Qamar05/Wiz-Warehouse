@@ -37,7 +37,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.databinding.FragmentInventoryOutGeneralDetailsBinding
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.ProductImage
 import com.vms.wizwarehouse.inventory_out.fragment_inventory_out_product_details.InventoryOutProductDetailsFragment
 import com.vms.wizwarehouse.utils.Utility
 import java.io.IOException
@@ -74,7 +73,7 @@ class DistributeDetailsFragment : Fragment() {
         _binding = FragmentInventoryOutGeneralDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        selectActivity =binding.spinActivity
+        selectActivity = binding.spinActivity
         supervisorName = binding.editSupervisor
         cameraReceiverImg = binding.cameraSupervisor
         receiverSignature = binding.imgSignature
@@ -94,13 +93,16 @@ class DistributeDetailsFragment : Fragment() {
         selectActivity!!.adapter = activityAdapter
 
         recyclerReceiverImages = binding.recyclerReceiverImages
-        receiverAdapter = ImagePreviewAdapter(requireContext(), receiverImages, object : ImagePreviewAdapter.OnImageRemoveListener {
-            override fun onRemove(position: Int) {
-                if (receiverImages.isEmpty()) {
-                    // show empty placeholder
+        receiverAdapter = ImagePreviewAdapter(
+            requireContext(),
+            receiverImages,
+            object : ImagePreviewAdapter.OnImageRemoveListener {
+                override fun onRemove(position: Int) {
+                    if (receiverImages.isEmpty()) {
+                        // show empty placeholder
+                    }
                 }
-            }
-        })
+            })
 
         recyclerReceiverImages!!.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

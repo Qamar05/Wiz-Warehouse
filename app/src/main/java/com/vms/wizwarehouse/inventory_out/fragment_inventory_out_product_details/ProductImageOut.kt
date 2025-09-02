@@ -12,6 +12,6 @@ data class InventoryItemOut(
     val productName: String,
     val date: String,
     val subCategory: String,
-    val itemNumber : String,
+    val itemNumber: String,
     val images: List<ProductImageOut>
 )

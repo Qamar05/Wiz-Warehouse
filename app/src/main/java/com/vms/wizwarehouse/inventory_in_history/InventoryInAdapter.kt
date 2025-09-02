@@ -10,39 +10,39 @@ import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.inventory_in_view_details.ViewInventoryInDetailsActivity
 
 class InventoryInAdapter(
-        private var itemList: List<InventoryInHistoryItem>
+    private var itemList: List<InventoryInHistoryItem>
 ) : RecyclerView.Adapter<InventoryInAdapter.ViewHolder>() {
 
-fun updateData(filtered: List<InventoryInHistoryItem>) {
-    itemList = filtered
-    notifyDataSetChanged()
-}
+    fun updateData(filtered: List<InventoryInHistoryItem>) {
+        itemList = filtered
+        notifyDataSetChanged()
+    }
 
-inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val viewText: TextView = itemView.findViewById(R.id.txt_view)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val viewText: TextView = itemView.findViewById(R.id.txt_view)
 
-    fun bind(item: InventoryInHistoryItem) {
-        // Bind any data you want to show
-        viewText.setOnClickListener {
-            val intent = Intent(it.context, ViewInventoryInDetailsActivity::class.java)
-            it.context.startActivity(intent)
+        fun bind(item: InventoryInHistoryItem) {
+            // Bind any data you want to show
+            viewText.setOnClickListener {
+                val intent = Intent(it.context, ViewInventoryInDetailsActivity::class.java)
+                it.context.startActivity(intent)
+            }
         }
     }
-}
 
-override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-    val view = LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_inventory_history, parent, false)
-    return ViewHolder(view)
-}
+        return ViewHolder(view)
+    }
 
-override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.bind(itemList[position])
-}
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(itemList[position])
+    }
 
-override fun getItemCount(): Int = itemList.size
+    override fun getItemCount(): Int = itemList.size
 
-fun getDateForPosition(position: Int): String {
-    return itemList[position].date
-}
+    fun getDateForPosition(position: Int): String {
+        return itemList[position].date
+    }
 }

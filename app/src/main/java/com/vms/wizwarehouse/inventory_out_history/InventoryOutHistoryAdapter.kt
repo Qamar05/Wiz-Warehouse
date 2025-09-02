@@ -1,14 +1,12 @@
-package com.vms.wizwarehouse.inventory_out_history;
+package com.vms.wizwarehouse.inventory_out_history
 
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vms.wizwarehouse.R
-import com.vms.wizwarehouse.inventory_in_history.InventoryInAdapter
-import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryItem
 import com.vms.wizwarehouse.inventory_out_view_details.ViewInventoryOutDetailsActivity
 import com.vms.wizwarehouse.return_inventory.ReturnInventoryActivity
 
@@ -18,7 +16,7 @@ class InventoryOutHistoryAdapter(private var itemList: List<InventoryOutHistoryI
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val view: TextView = itemView.findViewById(R.id.txt_view)
-        private val returnInventory : TextView = itemView.findViewById(R.id.txt_return)
+        private val returnInventory: TextView = itemView.findViewById(R.id.txt_return)
 
         fun bind(item: InventoryOutHistoryItem) {
             view.setOnClickListener {

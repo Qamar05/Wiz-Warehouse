@@ -1,25 +1,25 @@
-package com.vms.wizwarehouse.inventory_out_view_details;
+package com.vms.wizwarehouse.inventory_out_view_details
 
 import android.content.Intent
-import android.os.Bundle;
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView;
+import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView;
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-import com.vms.wizwarehouse.R;
+import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.databinding.ActivityViewInventoryOutDetailsBinding
 import com.vms.wizwarehouse.inventory_in_view_details.ViewInventoryInImagesAdapter
 import com.vms.wizwarehouse.return_inventory.ReturnInventoryActivity
-import com.vms.wizwarehouse.utils.Utility;
+import com.vms.wizwarehouse.utils.Utility
 
 
 class ViewInventoryOutDetailsActivity : AppCompatActivity() {

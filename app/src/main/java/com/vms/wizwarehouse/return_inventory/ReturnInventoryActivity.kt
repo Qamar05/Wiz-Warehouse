@@ -2,7 +2,6 @@ package com.vms.wizwarehouse.return_inventory
 
 import android.Manifest
 import android.app.Activity
-import android.app.ComponentCaller
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Intent
@@ -29,7 +28,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.github.gcacace.signaturepad.views.SignaturePad
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices

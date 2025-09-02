@@ -1,5 +1,5 @@
 // Kotlin version of RetrofitBuilder.java
-package com.vms.wizactivity.retrofit
+package com.vms.wizwarehouse.retrofit
 
 import android.content.Context
 import android.os.Build
@@ -9,7 +9,6 @@ import android.provider.Settings
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
-import com.vms.wizwarehouse.retrofit.ApiService
 import com.vms.wizwarehouse.utils.SharedPreferenceUtils
 import com.vms.wizwarehouse.utils.SlowNetworkManager
 import com.vms.wizwarehouse.utils.Utility
@@ -55,7 +54,13 @@ object RetrofitBuilder {
             retrofit ?: Retrofit.Builder()
                 .baseUrl(BASE_URL_UAT)  // Change to your dynamic base URL if needed
                 .addConverterFactory(GsonConverterFactory.create()) // Gson converter for parsing JSON
-                .client(getOkHttpClient(context, userId, userName)) // OkHttpClient setup with interceptors
+                .client(
+                    getOkHttpClient(
+                        context,
+                        userId,
+                        userName
+                    )
+                ) // OkHttpClient setup with interceptors
                 .build()
                 .also { retrofit = it }
         }
@@ -104,7 +109,8 @@ object RetrofitBuilder {
 
             return try {
                 val response = chain.proceed(request)
-                val dateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+                val dateTime =
+                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
                 val deviceInfo = JSONObject().apply {
                     put("device", "${Build.MANUFACTURER} ${Build.MODEL}")
@@ -112,7 +118,13 @@ object RetrofitBuilder {
                     put("brand", Build.BRAND)
                     put("hardware", Build.HARDWARE)
                     put("product", Build.PRODUCT)
-                    put("android_id", Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID))
+                    put(
+                        "android_id",
+                        Settings.Secure.getString(
+                            context.contentResolver,
+                            Settings.Secure.ANDROID_ID
+                        )
+                    )
                     put("screen_resolution", getScreenResolution(context))
                     put("locale", "${Locale.getDefault().displayLanguage} (${Locale.getDefault()})")
                 }
@@ -155,7 +167,8 @@ object RetrofitBuilder {
                 Log.d(TAG, finalLogJson.toString())
                 saveLogToFile(finalLogJson.toString())
 
-                accessToken = SharedPreferenceUtils.getString(context, SharedPreferenceUtils.ACCESS_TOKEN)
+                accessToken =
+                    SharedPreferenceUtils.getString(context, SharedPreferenceUtils.ACCESS_TOKEN)
                 sendNewLogsToAPI(finalLogJson, accessToken ?: "")
 
                 response
@@ -201,8 +214,10 @@ object RetrofitBuilder {
         }
 
         private fun sendNewLogsToAPI(logJson: JSONObject, authToken: String) {
-            val apiService = getRetrofitInstance(context, userId, userName).create(ApiService::class.java)
-            val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), logJson.toString())
+            val apiService =
+                getRetrofitInstance(context, userId, userName).create(ApiService::class.java)
+            val requestBody =
+                RequestBody.create("application/json".toMediaTypeOrNull(), logJson.toString())
             val call = apiService.sendLogs("Bearer $authToken", requestBody)
 
             call.enqueue(object : Callback<Void> {

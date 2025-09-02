@@ -12,10 +12,9 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.vms.wizactivity.retrofit.RetrofitBuilder
+import com.vms.wizwarehouse.retrofit.RetrofitBuilder
 import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.retrofit.ApiService
-import com.vms.wizwarehouse.utils.Const
 import com.vms.wizwarehouse.utils.SharedPreferenceUtils
 import com.vms.wizwarehouse.utils.Utility
 import retrofit2.Call
@@ -37,7 +36,10 @@ object UpdateChecker {
 
         val call: Call<UpdateResponse> = updateApi.getLatestVersion()
         call.enqueue(object : Callback<UpdateResponse> {
-            override fun onResponse(call: Call<UpdateResponse>, response: Response<UpdateResponse>) {
+            override fun onResponse(
+                call: Call<UpdateResponse>,
+                response: Response<UpdateResponse>
+            ) {
                 if (response.isSuccessful && response.body() != null) {
                     val updateData = response.body()!!.data ?: return
                     val latestVersion = updateData.version?.trim() ?: return
@@ -93,13 +95,22 @@ object UpdateChecker {
         val btnUpdate = alertDialog.findViewById<Button>(R.id.btn_update)
         val imgTick = alertDialog.findViewById<ImageView>(R.id.imgTick)
         val txtUpdateMessage = alertDialog.findViewById<TextView>(R.id.txtMessage)
-        txtUpdateMessage.text = "Latest Version $latestVersion available.\nPlease update to continue."
+        txtUpdateMessage.text =
+            "Latest Version $latestVersion available.\nPlease update to continue."
         imgTick.setImageResource(if (mode == "demo") R.drawable.img_update_orange else R.drawable.img_update)
         btnUpdate?.setOnClickListener {
             alertDialog.dismiss()
             ApkDownloader.downloadAndInstallApk(context, apkUrl)
-            SharedPreferenceUtils.saveBoolean(context, SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE, false)
-            SharedPreferenceUtils.saveBoolean(context, SharedPreferenceUtils.IS_CHECKED_IN_WAREHOUSE, false)
+            SharedPreferenceUtils.saveBoolean(
+                context,
+                SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE,
+                false
+            )
+            SharedPreferenceUtils.saveBoolean(
+                context,
+                SharedPreferenceUtils.IS_CHECKED_IN_WAREHOUSE,
+                false
+            )
         }
     }
 

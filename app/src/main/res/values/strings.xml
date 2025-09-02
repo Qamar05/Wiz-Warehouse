@@ -228,6 +228,7 @@
     <string name="product">Product</string>
     <string name="nature">Nature</string>
     <string name="last_updated">Last Updated</string>
+    <string name="no_inventory_data">No inventory data</string>
     <string-array name="filter_options">
         <item>All</item>
         <item>Single Date</item>

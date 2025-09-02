@@ -2,7 +2,6 @@ package com.vms.wizwarehouse.total_stock
 
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

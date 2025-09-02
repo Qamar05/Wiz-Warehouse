@@ -36,9 +36,12 @@ class LoginActivity : AppCompatActivity() {
         userCode = SharedPreferenceUtils.getString(this, SharedPreferenceUtils.USER_CODE) ?: ""
         userName = SharedPreferenceUtils.getString(this, SharedPreferenceUtils.USER_NAME) ?: ""
 
-        val isLoggedIn = SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE)
-        val isCheckedIn = SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.IS_CHECKED_IN_WAREHOUSE)
-        val isSupervisor = SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.IS_SUPERVISOR)
+        val isLoggedIn =
+            SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE)
+        val isCheckedIn =
+            SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.IS_CHECKED_IN_WAREHOUSE)
+        val isSupervisor =
+            SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.IS_SUPERVISOR)
         version = loginBinding.txtVersion
 
         version.text = Utility.setVersionName(this)
@@ -56,13 +59,14 @@ class LoginActivity : AppCompatActivity() {
             phone = loginBinding.editPhone
             submit = loginBinding.btnSubmit
             networkManager = NetworkManagerLogin()
-            networkManager.init(this, userCode , userName)
+            networkManager.init(this, userCode, userName)
             LoaderUtils.initLoader(this)
 
             submit.setOnClickListener {
                 val phoneNumber = phone.text.toString()
                 if (phoneNumber.isEmpty() || phoneNumber.length != 10) {
-                    Toast.makeText(this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Please enter a valid phone number", Toast.LENGTH_SHORT)
+                        .show()
                 } else {
                     LoaderUtils.showLoader()
                     sendOtpRequest(phoneNumber)
@@ -76,17 +80,29 @@ class LoginActivity : AppCompatActivity() {
             override fun onSuccess(response: OtpResponse) {
                 if (response.msg == "Verification code sent successfully") {
                     LoaderUtils.hideLoader()
-                    SharedPreferenceUtils.saveString(this@LoginActivity, SharedPreferenceUtils.PHONE_NUMBER, phoneNumber)
+                    SharedPreferenceUtils.saveString(
+                        this@LoginActivity,
+                        SharedPreferenceUtils.PHONE_NUMBER,
+                        phoneNumber
+                    )
                     startActivity(Intent(this@LoginActivity, OtpActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this@LoginActivity, "Failed to send OTP: ${response.msg}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Failed to send OTP: ${response.msg}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     LoaderUtils.hideLoader()
                 }
             }
 
             override fun onFailure(error: String) {
-                Toast.makeText(this@LoginActivity, "Something went wrong, contact support team!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Something went wrong, contact support team!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 LoaderUtils.hideLoader()
             }
         })

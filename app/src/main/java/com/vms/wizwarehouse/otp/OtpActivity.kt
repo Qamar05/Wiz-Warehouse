@@ -31,12 +31,12 @@ class OtpActivity : AppCompatActivity() {
     private lateinit var countDown: TextView
     private lateinit var countDownTimer: CountDownTimer
     private lateinit var phoneNumber: String
-    private lateinit var submit : Button
-    private lateinit var heading : TextView
-    private lateinit var otpHidden : EditText
-    private lateinit var version : TextView
-    private lateinit var userCode : String
-    private lateinit var userName : String
+    private lateinit var submit: Button
+    private lateinit var heading: TextView
+    private lateinit var otpHidden: EditText
+    private lateinit var version: TextView
+    private lateinit var userCode: String
+    private lateinit var userName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +65,10 @@ class OtpActivity : AppCompatActivity() {
         otpHidden.setAutofillHints("otp")
         LoaderUtils.initLoader(this)
 
-        phoneNumber = SharedPreferenceUtils.getString(this, SharedPreferenceUtils.PHONE_NUMBER) ?: ""
-        heading.text = "A verification code has been sent to your registered Phone Number: $phoneNumber"
+        phoneNumber =
+            SharedPreferenceUtils.getString(this, SharedPreferenceUtils.PHONE_NUMBER) ?: ""
+        heading.text =
+            "A verification code has been sent to your registered Phone Number: $phoneNumber"
 
         networkManager = NetworkManagerLogin()
         networkManager.init(this, userCode, userName)
@@ -90,7 +92,15 @@ class OtpActivity : AppCompatActivity() {
         otpFields.forEachIndexed { index, editText ->
             val prevField = otpFields.getOrNull(index - 1)
             val nextField = otpFields.getOrNull(index + 1)
-            editText.addTextChangedListener(GenericTextWatcher(editText, prevField, nextField, otpFields, otpHidden))
+            editText.addTextChangedListener(
+                GenericTextWatcher(
+                    editText,
+                    prevField,
+                    nextField,
+                    otpFields,
+                    otpHidden
+                )
+            )
         }
 
         submit.setOnClickListener {
@@ -98,7 +108,8 @@ class OtpActivity : AppCompatActivity() {
                 LoaderUtils.showLoader()
                 verifyOtp(phoneNumber, getOtpCode())
             } else {
-                Toast.makeText(this, "Please enter all digits of the OTP.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter all digits of the OTP.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -110,42 +121,74 @@ class OtpActivity : AppCompatActivity() {
     private fun verifyOtp(phoneNumber: String, otpCode: String) {
         val networkManagerOtp = NetworkManagerOtp()
         networkManagerOtp.init(this, userCode, userName)
-        networkManagerOtp.verifyOtp(phoneNumber, otpCode, object : ApiResponseListener<LoginResponse> {
-            override fun onSuccess(response: LoginResponse) {
-                LoaderUtils.hideLoader()
-                if (response.msg == "Login Successfully") {
-                    SharedPreferenceUtils.saveString(this@OtpActivity, SharedPreferenceUtils.ACCESS_TOKEN, response.accessToken)
-                    SharedPreferenceUtils.saveString(this@OtpActivity, SharedPreferenceUtils.USER_ROLE, response.role)
-                    SharedPreferenceUtils.saveBoolean(this@OtpActivity, SharedPreferenceUtils.IS_SUPERVISOR, response.role == "supervisor")
-                    SharedPreferenceUtils.saveBoolean(this@OtpActivity, SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE, true)
+        networkManagerOtp.verifyOtp(
+            phoneNumber,
+            otpCode,
+            object : ApiResponseListener<LoginResponse> {
+                override fun onSuccess(response: LoginResponse) {
+                    LoaderUtils.hideLoader()
+                    if (response.msg == "Login Successfully") {
+                        SharedPreferenceUtils.saveString(
+                            this@OtpActivity,
+                            SharedPreferenceUtils.ACCESS_TOKEN,
+                            response.accessToken
+                        )
+                        SharedPreferenceUtils.saveString(
+                            this@OtpActivity,
+                            SharedPreferenceUtils.USER_ROLE,
+                            response.role
+                        )
+                        SharedPreferenceUtils.saveBoolean(
+                            this@OtpActivity,
+                            SharedPreferenceUtils.IS_SUPERVISOR,
+                            response.role == "supervisor"
+                        )
+                        SharedPreferenceUtils.saveBoolean(
+                            this@OtpActivity,
+                            SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE,
+                            true
+                        )
 
-                    if (response.role == "fwp" ) {
-                        startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
-                        finish()
+                        if (response.role == "fwp") {
+                            startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
+                            finish()
+                        } else {
+                            showAccessDialog()
+                        }
                     } else {
-                        showAccessDialog()
+                        Toast.makeText(
+                            this@OtpActivity,
+                            "OTP verification failed: ${response.msg}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                } else {
-                    Toast.makeText(this@OtpActivity, "OTP verification failed: ${response.msg}", Toast.LENGTH_SHORT).show()
                 }
-            }
 
-            override fun onFailure(error: String) {
-                Toast.makeText(this@OtpActivity, "Error: Unable to verify OTP", Toast.LENGTH_SHORT).show()
-                LoaderUtils.hideLoader()
-            }
-        })
+                override fun onFailure(error: String) {
+                    Toast.makeText(
+                        this@OtpActivity,
+                        "Error: Unable to verify OTP",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    LoaderUtils.hideLoader()
+                }
+            })
     }
 
     private fun sendOtpRequest(phoneNumber: String) {
         networkManager.sendOtpRequest(phoneNumber, object : ApiResponseListener<OtpResponse> {
             override fun onSuccess(response: OtpResponse) {
                 if (response.msg == "Verification code sent successfully") {
-                    Toast.makeText(this@OtpActivity, "OTP Sent Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@OtpActivity, "OTP Sent Successfully", Toast.LENGTH_SHORT)
+                        .show()
                     countDownTimer.start()
                     resend.isEnabled = false
                 } else {
-                    Toast.makeText(this@OtpActivity, "Failed to send OTP: ${response.msg}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@OtpActivity,
+                        "Failed to send OTP: ${response.msg}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 

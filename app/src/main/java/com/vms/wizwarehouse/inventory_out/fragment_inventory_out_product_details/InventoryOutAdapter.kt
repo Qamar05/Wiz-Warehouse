@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vms.wizwarehouse.databinding.ItemInventoryOutBinding
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.ImageAdapterIn
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.InventoryItem
 
 
 class InventoryOutAdapter(
@@ -26,7 +24,8 @@ class InventoryOutAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
-        val binding = ItemInventoryOutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemInventoryOutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return InventoryViewHolder(binding)
     }
 

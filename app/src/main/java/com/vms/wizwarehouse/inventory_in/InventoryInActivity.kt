@@ -1,26 +1,26 @@
-package com.vms.wizwarehouse.inventory_in;
+package com.vms.wizwarehouse.inventory_in
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.content.Intent
+import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout
+import android.widget.TextView
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 
-import com.vms.wizwarehouse.R;
+import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.databinding.ActivityInventoryInBinding
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_general_details.InventoryInGeneralDetailsFragment;
-import com.vms.wizwarehouse.inventory_out_history.InventoryOutHistoryActivity;
-import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryActivity;
-import com.vms.wizwarehouse.login.LoginActivity;
-import com.vms.wizwarehouse.ota.UpdateChecker;
-import com.vms.wizwarehouse.reports.ReportsActivity;
-import com.vms.wizwarehouse.steps_to_update.StepsToUpdateActivity;
-import com.vms.wizwarehouse.utils.SharedPreferenceUtils;
-import com.vms.wizwarehouse.utils.Utility;
+import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_general_details.InventoryInGeneralDetailsFragment
+import com.vms.wizwarehouse.inventory_out_history.InventoryOutHistoryActivity
+import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryActivity
+import com.vms.wizwarehouse.login.LoginActivity
+import com.vms.wizwarehouse.ota.UpdateChecker
+import com.vms.wizwarehouse.reports.ReportsActivity
+import com.vms.wizwarehouse.steps_to_update.StepsToUpdateActivity
+import com.vms.wizwarehouse.utils.SharedPreferenceUtils
+import com.vms.wizwarehouse.utils.Utility
 
 
 class InventoryInActivity : AppCompatActivity() {

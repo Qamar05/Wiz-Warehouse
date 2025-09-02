@@ -43,10 +43,10 @@
             android:id="@+id/txt_survey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="@string/distribute"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@id/img_back"
             app:layout_constraintStart_toEndOf="@id/img_back"
             app:layout_constraintTop_toTopOf="@id/img_back" />
@@ -89,13 +89,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/spin_filter"
+            android:text="@string/history"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/spin_filter"
             app:layout_constraintStart_toStartOf="@id/img_back"
-            android:text="@string/history"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
+            app:layout_constraintTop_toTopOf="@id/spin_filter" />
 
         <Spinner
             android:id="@+id/spin_filter"
@@ -141,25 +140,55 @@
             android:id="@+id/recyclerview_distribute_history"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingTop="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="50dp"
+            android:paddingTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spin_filter" />
 
+        <ImageView
+            android:id="@+id/demoEmptyImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/demo_empty_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/spin_filter"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/txt_no_inventory_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/no_inventory_data"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/demoEmptyImage"
+            app:layout_constraintStart_toStartOf="@id/demoEmptyImage"
+            app:layout_constraintTop_toBottomOf="@id/demoEmptyImage" />
+
+
         <TextView
             android:id="@+id/txt_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="@string/version"
             android:textColor="@color/black"
-            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.95"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerview_distribute_history"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

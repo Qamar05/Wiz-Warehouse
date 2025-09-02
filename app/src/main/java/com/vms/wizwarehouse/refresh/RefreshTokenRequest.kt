@@ -1,4 +1,4 @@
-package com.vms.wizwarehouse.refresh;
+package com.vms.wizwarehouse.refresh
 
 import com.google.gson.annotations.SerializedName
 

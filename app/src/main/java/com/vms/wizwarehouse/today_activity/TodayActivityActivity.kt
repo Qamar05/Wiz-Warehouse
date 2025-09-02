@@ -30,10 +30,38 @@ class TodayActivityActivity : AppCompatActivity() {
 
         // Sample data
         activityList = arrayListOf(
-            TodayActivityItem("AB28682", "Testing Activity", "Abcdefgh", "Name1, Name2", "10:00 AM - 12:00 PM", "Noida"),
-            TodayActivityItem("CD47892", "Site Visit", "Xyz", "Pqr, Lmn", "1:00 PM - 3:00 PM", "Delhi"),
-            TodayActivityItem("EF98321", "Maintenance", "John Doe", "Alice, Bob", "4:00 PM - 6:00 PM", "Gurgaon"),
-            TodayActivityItem("GH11223", "Training Session", "Ramesh Kumar", "Sita, Mohan", "9:00 AM - 11:00 AM", "Lucknow"),
+            TodayActivityItem(
+                "AB28682",
+                "Testing Activity",
+                "Abcdefgh",
+                "Name1, Name2",
+                "10:00 AM - 12:00 PM",
+                "Noida"
+            ),
+            TodayActivityItem(
+                "CD47892",
+                "Site Visit",
+                "Xyz",
+                "Pqr, Lmn",
+                "1:00 PM - 3:00 PM",
+                "Delhi"
+            ),
+            TodayActivityItem(
+                "EF98321",
+                "Maintenance",
+                "John Doe",
+                "Alice, Bob",
+                "4:00 PM - 6:00 PM",
+                "Gurgaon"
+            ),
+            TodayActivityItem(
+                "GH11223",
+                "Training Session",
+                "Ramesh Kumar",
+                "Sita, Mohan",
+                "9:00 AM - 11:00 AM",
+                "Lucknow"
+            ),
 //            TodayActivityItem("IJ33445", "Product Demo", "Priya Sharma", "Anil, Sunita", "11:30 AM - 1:00 PM", "Chandigarh"),
 //            TodayActivityItem("KL55667", "Inventory Audit", "Amit Verma", "Ravi, Kiran", "2:00 PM - 4:00 PM", "Mumbai"),
 //            TodayActivityItem("MN77889", "Quality Check", "Neha Gupta", "Vikas, Rohan", "3:30 PM - 5:30 PM", "Jaipur"),

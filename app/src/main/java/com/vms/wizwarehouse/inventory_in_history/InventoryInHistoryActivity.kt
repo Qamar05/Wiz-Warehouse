@@ -26,7 +26,6 @@ import com.vms.wizwarehouse.steps_to_update.StepsToUpdateActivity
 import com.vms.wizwarehouse.utils.SharedPreferenceUtils
 import com.vms.wizwarehouse.utils.Utility
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -46,9 +45,11 @@ class InventoryInHistoryActivity : AppCompatActivity() {
     private lateinit var userCode: String
     private lateinit var userName: String
     private lateinit var imgBack: ImageView
-
     private val inventoryList = mutableListOf<InventoryInHistoryItem>()
     private lateinit var adapterInventory: InventoryInAdapter
+
+    private lateinit var demoEmptyImg: ImageView
+    private lateinit var demoEmptyText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +66,8 @@ class InventoryInHistoryActivity : AppCompatActivity() {
         add = findViewById(R.id.txt_add)
         version = findViewById(R.id.txt_version)
         imgBack = findViewById(R.id.img_back)
+        demoEmptyImg = findViewById(R.id.demoEmptyImage)
+        demoEmptyText = findViewById(R.id.txt_no_inventory_found)
 
         imgBack.setOnClickListener {
             finish()
@@ -80,11 +83,17 @@ class InventoryInHistoryActivity : AppCompatActivity() {
         }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 when (position) {
-                    0 ->{
+                    0 -> {
                         showAllData()
                     }
+
                     1 -> { // Single date
                         val datePicker =
                             MaterialDatePicker.Builder.datePicker()
@@ -395,10 +404,12 @@ class InventoryInHistoryActivity : AppCompatActivity() {
     private fun updateRecycler(filteredList: List<InventoryInHistoryItem>) {
         if (filteredList.isEmpty()) {
             recyclerView.visibility = View.GONE
-//            demoImageView.visibility = View.VISIBLE
+            demoEmptyImg.visibility = View.VISIBLE
+            demoEmptyText.visibility = View.VISIBLE
         } else {
             recyclerView.visibility = View.VISIBLE
-//            demoImageView.visibility = View.GONE
+            demoEmptyImg.visibility = View.INVISIBLE
+            demoEmptyText.visibility = View.GONE
             adapterInventory.updateData(filteredList)
         }
     }

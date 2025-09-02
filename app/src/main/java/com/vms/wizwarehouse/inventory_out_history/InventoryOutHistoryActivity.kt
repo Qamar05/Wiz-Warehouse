@@ -1,35 +1,33 @@
-package com.vms.wizwarehouse.inventory_out_history;
+package com.vms.wizwarehouse.inventory_out_history
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.LinearLayout;
+import android.widget.LinearLayout
 import android.widget.Spinner
-import android.widget.TextView;
+import android.widget.TextView
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.datepicker.MaterialDatePicker
 
-import com.vms.wizwarehouse.R;
-import com.vms.wizwarehouse.inventory_in_history.InventoryInAdapter
-import com.vms.wizwarehouse.inventory_out.DistributeInventoryActivity;
-import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryActivity;
-import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryItem
+import com.vms.wizwarehouse.R
+import com.vms.wizwarehouse.inventory_out.DistributeInventoryActivity
+import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryActivity
 
-import com.vms.wizwarehouse.login.LoginActivity;
-import com.vms.wizwarehouse.ota.UpdateChecker;
-import com.vms.wizwarehouse.reports.ReportsActivity;
-import com.vms.wizwarehouse.steps_to_update.StepsToUpdateActivity;
-import com.vms.wizwarehouse.utils.SharedPreferenceUtils;
-import com.vms.wizwarehouse.utils.Utility;
+import com.vms.wizwarehouse.login.LoginActivity
+import com.vms.wizwarehouse.ota.UpdateChecker
+import com.vms.wizwarehouse.reports.ReportsActivity
+import com.vms.wizwarehouse.steps_to_update.StepsToUpdateActivity
+import com.vms.wizwarehouse.utils.SharedPreferenceUtils
+import com.vms.wizwarehouse.utils.Utility
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -50,6 +48,8 @@ class InventoryOutHistoryActivity : AppCompatActivity() {
     private lateinit var imgBack: ImageView
     private lateinit var spinner: Spinner
     private lateinit var adapterInventoryHistory: InventoryOutHistoryAdapter
+    private lateinit var demoEmptyImg: ImageView
+    private lateinit var demoEmptyText: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +67,8 @@ class InventoryOutHistoryActivity : AppCompatActivity() {
         add = findViewById(R.id.txt_add)
         imgBack = findViewById(R.id.img_back)
         spinner = findViewById(R.id.spin_filter)
+        demoEmptyImg = findViewById(R.id.demoEmptyImage)
+        demoEmptyText = findViewById(R.id.txt_no_inventory_found)
 
         add.setOnClickListener {
             startActivity(Intent(this, DistributeInventoryActivity::class.java))
@@ -87,11 +89,17 @@ class InventoryOutHistoryActivity : AppCompatActivity() {
         }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 when (position) {
-                    0 ->{
+                    0 -> {
                         showAllData()
                     }
+
                     1 -> { // Single date
                         val datePicker =
                             MaterialDatePicker.Builder.datePicker()
@@ -281,7 +289,8 @@ class InventoryOutHistoryActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(headerDecoration)
     }
 
-    private val allInventoryList: List<InventoryOutHistoryItem> = distributeList // keep original copy
+    private val allInventoryList: List<InventoryOutHistoryItem> =
+        distributeList // keep original copy
 
     private fun filterRecyclerViewByDate(dateMillis: Long) {
         val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
@@ -313,10 +322,12 @@ class InventoryOutHistoryActivity : AppCompatActivity() {
     private fun updateRecycler(filteredList: List<InventoryOutHistoryItem>) {
         if (filteredList.isEmpty()) {
             recyclerView.visibility = View.GONE
-//            demoImageView.visibility = View.VISIBLE
+            demoEmptyImg.visibility = View.VISIBLE
+            demoEmptyText.visibility = View.VISIBLE
         } else {
             recyclerView.visibility = View.VISIBLE
-//            demoImageView.visibility = View.GONE
+            demoEmptyImg.visibility = View.INVISIBLE
+            demoEmptyText.visibility = View.GONE
             adapterInventoryHistory.updateData(filteredList)
         }
     }

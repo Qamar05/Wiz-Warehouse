@@ -37,7 +37,6 @@ import com.google.android.gms.location.LocationServices
 import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.databinding.FragmentInventoryInGeneralDetailsBinding
 import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.InventoryInProductDetailsFragment
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.ProductImage
 import com.vms.wizwarehouse.inventory_out.distributer_details.ImageItem
 import com.vms.wizwarehouse.inventory_out.distributer_details.ImagePreviewAdapter
 import com.vms.wizwarehouse.utils.Utility
@@ -54,7 +53,7 @@ class InventoryInGeneralDetailsFragment : Fragment() {
     private lateinit var receiverImageUri: Uri
     private lateinit var agentImageUri: Uri
     private lateinit var invoiceImageUri: Uri
-    private lateinit var next : Button
+    private lateinit var next: Button
 
 
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
@@ -110,15 +109,18 @@ class InventoryInGeneralDetailsFragment : Fragment() {
         version.setText(Utility.setVersionName(requireContext()))
 
         recyclerReceiverImages = binding.recyclerReceiverImages
-        receiverAdapter = ImagePreviewAdapter(requireContext(), receiverImages, object : ImagePreviewAdapter.OnImageRemoveListener {
-            override fun onRemove(position: Int) {
-                // No need to remove again, adapter already did it
-                // Just handle UI updates or show empty state if needed
-                if (receiverImages.isEmpty()) {
-                    // show empty placeholder
+        receiverAdapter = ImagePreviewAdapter(
+            requireContext(),
+            receiverImages,
+            object : ImagePreviewAdapter.OnImageRemoveListener {
+                override fun onRemove(position: Int) {
+                    // No need to remove again, adapter already did it
+                    // Just handle UI updates or show empty state if needed
+                    if (receiverImages.isEmpty()) {
+                        // show empty placeholder
+                    }
                 }
-            }
-        })
+            })
 
 
         recyclerReceiverImages.layoutManager =
@@ -126,26 +128,32 @@ class InventoryInGeneralDetailsFragment : Fragment() {
         recyclerReceiverImages.adapter = receiverAdapter
 
         recyclerAgentImages = binding.recyclerAgentImages
-        agentAdapter = ImagePreviewAdapter(requireContext(), agentImages, object : ImagePreviewAdapter.OnImageRemoveListener{
-            override fun onRemove(position: Int) {
-                if (agentImages.isEmpty()) {
-                    // show empty placeholder
+        agentAdapter = ImagePreviewAdapter(
+            requireContext(),
+            agentImages,
+            object : ImagePreviewAdapter.OnImageRemoveListener {
+                override fun onRemove(position: Int) {
+                    if (agentImages.isEmpty()) {
+                        // show empty placeholder
+                    }
                 }
-            }
-        })
+            })
 
         recyclerAgentImages.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerAgentImages.adapter = agentAdapter
 
         recyclerInvoiceImages = binding.recyclerInvoiceImages
-        invoiceAdapter = ImagePreviewAdapter(requireContext(), invoiceImages, object : ImagePreviewAdapter.OnImageRemoveListener {
-            override fun onRemove(position: Int) {
-                if (invoiceImages.isEmpty()) {
-                    // show empty placeholder
+        invoiceAdapter = ImagePreviewAdapter(
+            requireContext(),
+            invoiceImages,
+            object : ImagePreviewAdapter.OnImageRemoveListener {
+                override fun onRemove(position: Int) {
+                    if (invoiceImages.isEmpty()) {
+                        // show empty placeholder
+                    }
                 }
-            }
-        })
+            })
 
         recyclerInvoiceImages.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -171,7 +179,7 @@ class InventoryInGeneralDetailsFragment : Fragment() {
             fetchLocationAndOpenCamera("invoice")
         }
 
-        next.setOnClickListener{
+        next.setOnClickListener {
 //            if (receiverImages.isNullOrEmpty()) {
 //                Toast.makeText(context, "Please upload at least one Receiver image", Toast.LENGTH_SHORT).show()
 //                return@setOnClickListener

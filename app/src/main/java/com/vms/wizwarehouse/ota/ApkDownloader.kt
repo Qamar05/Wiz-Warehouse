@@ -129,7 +129,8 @@ object ApkDownloader {
                                 downloading = false
                                 handler.post {
                                     progressDialog?.dismiss()
-                                    Toast.makeText(context, "Download failed", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context, "Download failed", Toast.LENGTH_LONG)
+                                        .show()
                                 }
                             }
                         }

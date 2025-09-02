@@ -14,7 +14,7 @@ import java.security.GeneralSecurityException
  */
 object SharedPreferenceUtils {
 
-        const val LATITUDE = "latitude"
+    const val LATITUDE = "latitude"
     const val LONGITUDE = "longitude"
     const val CHECK_IN_ID = "checkInId"
     const val ACCESS_TOKEN = "access_token"
@@ -35,67 +35,67 @@ object SharedPreferenceUtils {
     const val BRAND_ID = "brand_id"
     const val VARIANT_ID = "variant_id"
 
-private const val PREFERENCE_NAME = "com.vms.wizactivity"
+    private const val PREFERENCE_NAME = "com.vms.wizactivity"
 
-private fun getSecureSharedPreferences(context: Context): SharedPreferences? {
+    private fun getSecureSharedPreferences(context: Context): SharedPreferences? {
         return try {
-val masterKey = MasterKey.Builder(context)
-        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-        .build()
+            val masterKey = MasterKey.Builder(context)
+                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+                .build()
 
             EncryptedSharedPreferences.create(
-        context,
-        PREFERENCE_NAME,
-        masterKey,
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+                context,
+                PREFERENCE_NAME,
+                masterKey,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
         } catch (e: GeneralSecurityException) {
-        Log.e("SHARED_PREFERENCES", "Security error: $e")
+            Log.e("SHARED_PREFERENCES", "Security error: $e")
             null
-                    } catch (e: IOException) {
-        Log.e("SHARED_PREFERENCES", "IO error: $e")
+        } catch (e: IOException) {
+            Log.e("SHARED_PREFERENCES", "IO error: $e")
             null
-                    }
-                    }
+        }
+    }
 
-fun saveBoolean(context: Context, key: String, value: Boolean) {
-    getSecureSharedPreferences(context)?.edit()?.putBoolean(key, value)?.apply()
-}
+    fun saveBoolean(context: Context, key: String, value: Boolean) {
+        getSecureSharedPreferences(context)?.edit()?.putBoolean(key, value)?.apply()
+    }
 
-fun getBoolean(context: Context, key: String): Boolean {
-    return getSecureSharedPreferences(context)?.getBoolean(key, false) ?: false
-}
+    fun getBoolean(context: Context, key: String): Boolean {
+        return getSecureSharedPreferences(context)?.getBoolean(key, false) ?: false
+    }
 
-fun saveInt(context: Context, key: String, value: Int) {
-    getSecureSharedPreferences(context)?.edit()?.putInt(key, value)?.apply()
-}
+    fun saveInt(context: Context, key: String, value: Int) {
+        getSecureSharedPreferences(context)?.edit()?.putInt(key, value)?.apply()
+    }
 
-fun getInt(context: Context, key: String): Int {
-    return getSecureSharedPreferences(context)?.getInt(key, 0) ?: 0
-}
+    fun getInt(context: Context, key: String): Int {
+        return getSecureSharedPreferences(context)?.getInt(key, 0) ?: 0
+    }
 
-fun saveFloat(context: Context, key: String, value: Float) {
-    getSecureSharedPreferences(context)?.edit()?.putFloat(key, value)?.apply()
-}
+    fun saveFloat(context: Context, key: String, value: Float) {
+        getSecureSharedPreferences(context)?.edit()?.putFloat(key, value)?.apply()
+    }
 
-fun getFloat(context: Context, key: String): Float {
-    return getSecureSharedPreferences(context)?.getFloat(key, 0.0f) ?: 0.0f
-}
+    fun getFloat(context: Context, key: String): Float {
+        return getSecureSharedPreferences(context)?.getFloat(key, 0.0f) ?: 0.0f
+    }
 
-fun saveLong(context: Context, key: String, value: Long) {
-    getSecureSharedPreferences(context)?.edit()?.putLong(key, value)?.apply()
-}
+    fun saveLong(context: Context, key: String, value: Long) {
+        getSecureSharedPreferences(context)?.edit()?.putLong(key, value)?.apply()
+    }
 
-fun getLong(context: Context, key: String): Long {
-    return getSecureSharedPreferences(context)?.getLong(key, 0L) ?: 0L
-}
+    fun getLong(context: Context, key: String): Long {
+        return getSecureSharedPreferences(context)?.getLong(key, 0L) ?: 0L
+    }
 
-fun saveString(context: Context, key: String, value: String?) {
-    getSecureSharedPreferences(context)?.edit()?.putString(key, value)?.apply()
-}
+    fun saveString(context: Context, key: String, value: String?) {
+        getSecureSharedPreferences(context)?.edit()?.putString(key, value)?.apply()
+    }
 
-fun getString(context: Context, key: String): String? {
+    fun getString(context: Context, key: String): String? {
         return getSecureSharedPreferences(context)?.getString(key, null)
     }
-            }
+}

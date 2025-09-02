@@ -1,6 +1,6 @@
 package com.vms.wizwarehouse.today_activity
 
-data class TodayActivityItem (
+data class TodayActivityItem(
     val id: String,
     val activityType: String,
     val supervisor: String,

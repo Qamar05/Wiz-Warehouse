@@ -1,7 +1,7 @@
 package com.vms.wizwarehouse.utils
 
 object Const {
-        const val ACCESS_TOKEN = "access_token"
+    const val ACCESS_TOKEN = "access_token"
     const val OTHERS = "Others"
     const val BEARER = "Bearer"
     const val MULTIPART_FORM_DATA = "multipart/form-data"

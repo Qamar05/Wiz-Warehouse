@@ -29,20 +29,20 @@ interface ApiService {
     @Multipart
     @POST("checkin")
     fun submitForm(
-            @Header("Authorization") authorization: String,
-            @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
-            @Part checkInSelfie: MultipartBody.Part,
-            @Part checkInOutletSelfie: MultipartBody.Part
+        @Header("Authorization") authorization: String,
+        @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
+        @Part checkInSelfie: MultipartBody.Part,
+        @Part checkInOutletSelfie: MultipartBody.Part
     ): Call<CheckInResponse>
 
     @Multipart
     @PUT("checkout/{id}")
     fun checkOutForm(
-            @Path("id") id: Int,
-            @Header("Authorization") authorization: String,
-            @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
-            @Part checkOutSelfie: MultipartBody.Part,
-            @Part checkOutOutletSelfie: MultipartBody.Part
+        @Path("id") id: Int,
+        @Header("Authorization") authorization: String,
+        @PartMap map: HashMap<String, @JvmSuppressWildcards RequestBody>,
+        @Part checkOutSelfie: MultipartBody.Part,
+        @Part checkOutOutletSelfie: MultipartBody.Part
     ): Call<CheckInResponse>
 
     @GET("profile")
@@ -54,8 +54,8 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("user-logs")
     fun sendLogs(
-            @Header("Authorization") token: String,
-            @Body logData: RequestBody
+        @Header("Authorization") token: String,
+        @Body logData: RequestBody
     ): Call<Void>
 
     @POST("refresh")

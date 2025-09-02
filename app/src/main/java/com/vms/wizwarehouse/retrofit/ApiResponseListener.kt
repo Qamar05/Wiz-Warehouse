@@ -1,4 +1,4 @@
-package com.vms.wizwarehouse.retrofit;
+package com.vms.wizwarehouse.retrofit
 
 
 interface ApiResponseListener<T> {

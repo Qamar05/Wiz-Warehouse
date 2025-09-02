@@ -22,7 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.gms.location.LocationServices
-import com.vms.wizactivity.retrofit.RetrofitBuilder
+import com.vms.wizwarehouse.retrofit.RetrofitBuilder
 import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.inventory_in.InventoryInActivity
 import com.vms.wizwarehouse.camera.CameraActivity
@@ -32,7 +32,6 @@ import com.vms.wizwarehouse.inventory_out.DistributeInventoryActivity
 import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryActivity
 import com.vms.wizwarehouse.login.LoginActivity
 import com.vms.wizwarehouse.ota.UpdateChecker
-import com.vms.wizwarehouse.pending_return.PendingReturnActivity
 import com.vms.wizwarehouse.refresh.RefreshTokenRequest
 import com.vms.wizwarehouse.refresh.RefreshTokenResponse
 import com.vms.wizwarehouse.reports.ReportsActivity

@@ -1,4 +1,4 @@
-package com.vms.wizwarehouse.camera;
+package com.vms.wizwarehouse.camera
 
 
 import android.Manifest
@@ -35,7 +35,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.vms.wizactivity.retrofit.RetrofitBuilder
+import com.vms.wizwarehouse.retrofit.RetrofitBuilder
 import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.dashboard.DashboardActivity
 import com.vms.wizwarehouse.retrofit.ApiResponseListener
@@ -125,7 +125,7 @@ class CameraActivity : AppCompatActivity() {
         txtSubmit = cameraBinding.txtSubmit
         address = cameraBinding.txtAddress
         camera = cameraBinding.cameraPreview
-        refresh =cameraBinding.imgRefresh
+        refresh = cameraBinding.imgRefresh
         heading = cameraBinding.txtSelfie
 
 

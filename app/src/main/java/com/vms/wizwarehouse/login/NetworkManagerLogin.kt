@@ -1,7 +1,7 @@
 package com.vms.wizwarehouse.login
 
 import android.content.Context
-import com.vms.wizactivity.retrofit.RetrofitBuilder
+import com.vms.wizwarehouse.retrofit.RetrofitBuilder
 import com.vms.wizwarehouse.retrofit.ApiResponseListener
 import com.vms.wizwarehouse.retrofit.ApiService
 import retrofit2.Call

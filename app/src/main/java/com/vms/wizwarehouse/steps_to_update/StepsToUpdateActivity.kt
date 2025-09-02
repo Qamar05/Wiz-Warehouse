@@ -1,4 +1,4 @@
-package com.vms.wizwarehouse.steps_to_update;
+package com.vms.wizwarehouse.steps_to_update
 
 import android.app.DownloadManager
 import android.content.Intent

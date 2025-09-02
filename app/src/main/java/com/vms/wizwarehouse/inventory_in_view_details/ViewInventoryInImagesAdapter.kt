@@ -20,6 +20,7 @@ class ViewInventoryInImagesAdapter(
         val imageView: ImageView = itemView.findViewById(R.id.imgItem)
         val overlayText: TextView = itemView.findViewById(R.id.txtOverlay)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.item_inventory_image, parent, false)

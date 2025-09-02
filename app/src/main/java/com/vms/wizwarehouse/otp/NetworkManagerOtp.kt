@@ -1,7 +1,7 @@
 package com.vms.wizwarehouse.otp
 
 import android.content.Context
-import com.vms.wizactivity.retrofit.RetrofitBuilder
+import com.vms.wizwarehouse.retrofit.RetrofitBuilder
 import com.vms.wizwarehouse.retrofit.ApiResponseListener
 import com.vms.wizwarehouse.retrofit.ApiService
 import retrofit2.Call
@@ -26,7 +26,11 @@ class NetworkManagerOtp {
         ).create(ApiService::class.java)
     }
 
-    fun verifyOtp(phoneNumber: String, otpCode: String, listener: ApiResponseListener<LoginResponse>) {
+    fun verifyOtp(
+        phoneNumber: String,
+        otpCode: String,
+        listener: ApiResponseListener<LoginResponse>
+    ) {
         val loginRequest = LoginRequest(phoneNumber, otpCode)
         val call = apiService.verifyOtp(loginRequest)
 

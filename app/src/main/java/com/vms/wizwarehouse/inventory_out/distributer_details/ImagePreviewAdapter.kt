@@ -1,4 +1,4 @@
-package com.vms.wizwarehouse.inventory_out.distributer_details;
+package com.vms.wizwarehouse.inventory_out.distributer_details
 
 import android.content.Context
 import android.view.LayoutInflater

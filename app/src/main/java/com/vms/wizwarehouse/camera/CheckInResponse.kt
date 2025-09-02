@@ -1,6 +1,6 @@
-package com.vms.wizwarehouse.camera;
+package com.vms.wizwarehouse.camera
 
 data class CheckInResponse(
-        val msg: String,
-        val data: CheckInData
+    val msg: String,
+    val data: CheckInData
 )

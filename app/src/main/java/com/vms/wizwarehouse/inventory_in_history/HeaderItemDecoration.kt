@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.vms.wizwarehouse.R
 
 class HeaderItemDecoration(
-        context: Context,
-        private val mListener: StickyHeaderInterface
+    context: Context,
+    private val mListener: StickyHeaderInterface
 ) : RecyclerView.ItemDecoration() {
 
     private val headerView: View
@@ -28,8 +27,8 @@ class HeaderItemDecoration(
 
         // Measure header once
         headerView.measure(
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         )
         headerHeight = headerView.measuredHeight
 
@@ -44,8 +43,8 @@ class HeaderItemDecoration(
     override fun onDrawOver(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         if (parent.childCount == 0) return
 
-                val leftMargin = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 16f, parent.context.resources.displayMetrics
+        val leftMargin = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 16f, parent.context.resources.displayMetrics
         ).toInt()
 
         var previousHeader = ""
@@ -68,13 +67,13 @@ class HeaderItemDecoration(
         val topPosition = parent.getChildAdapterPosition(topChild)
         if (topPosition == RecyclerView.NO_POSITION) return
 
-                val topHeader = mListener.getHeaderForPosition(topPosition)
+        val topHeader = mListener.getHeaderForPosition(topPosition)
         val stickyHeaderView = mListener.getHeaderView(topHeader, parent) ?: return
 
-                stickyHeaderView.measure(
-                        View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY),
-                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-                )
+        stickyHeaderView.measure(
+            View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
         stickyHeaderView.layout(0, 0, parent.width, stickyHeaderView.measuredHeight)
 
         val contactPoint = headerHeight
@@ -94,17 +93,23 @@ class HeaderItemDecoration(
         canvas.restore()
     }
 
-    private fun drawHeader(canvas: Canvas, child: View, headerText: String, parent: RecyclerView, top: Int) {
+    private fun drawHeader(
+        canvas: Canvas,
+        child: View,
+        headerText: String,
+        parent: RecyclerView,
+        top: Int
+    ) {
         val headerView = mListener.getHeaderView(headerText, parent) ?: return
 
-                headerView.measure(
-                        View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY),
-                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-                )
+        headerView.measure(
+            View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
         headerView.layout(0, 0, parent.width, headerView.measuredHeight)
 
         val startMarginPx = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 16f, parent.context.resources.displayMetrics
+            TypedValue.COMPLEX_UNIT_DIP, 16f, parent.context.resources.displayMetrics
         ).toInt()
 
         canvas.save()
@@ -119,11 +124,16 @@ class HeaderItemDecoration(
         fun getHeaderView(headerText: String, parent: RecyclerView): View?
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         val position = parent.getChildAdapterPosition(view)
         if (position == RecyclerView.NO_POSITION) return
 
-                val currentHeader = mListener.getHeaderForPosition(position)
+        val currentHeader = mListener.getHeaderForPosition(position)
         val nextHeader = if (position + 1 < state.itemCount) {
             mListener.getHeaderForPosition(position + 1)
         } else {
@@ -132,7 +142,7 @@ class HeaderItemDecoration(
 
         if (currentHeader != nextHeader) {
             val spaceInPx = TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 30f, parent.context.resources.displayMetrics
+                TypedValue.COMPLEX_UNIT_DIP, 30f, parent.context.resources.displayMetrics
             ).toInt()
             outRect.bottom = spaceInPx
         } else {
@@ -167,17 +177,17 @@ class HeaderItemDecoration(
     }
 
     private fun getNextHeaderView(parent: RecyclerView, currentPosition: Int): View? {
-    for (i in 1 until parent.childCount) {
-        val child = parent.getChildAt(i)
-        val position = parent.getChildAdapterPosition(child)
-        if (position != RecyclerView.NO_POSITION) {
-            val header = mListener.getHeaderForPosition(position)
-            val currentHeader = mListener.getHeaderForPosition(currentPosition)
-            if (header != currentHeader) {
-                return child
+        for (i in 1 until parent.childCount) {
+            val child = parent.getChildAt(i)
+            val position = parent.getChildAdapterPosition(child)
+            if (position != RecyclerView.NO_POSITION) {
+                val header = mListener.getHeaderForPosition(position)
+                val currentHeader = mListener.getHeaderForPosition(currentPosition)
+                if (header != currentHeader) {
+                    return child
+                }
             }
         }
-    }
-    return null
+        return null
     }
 }

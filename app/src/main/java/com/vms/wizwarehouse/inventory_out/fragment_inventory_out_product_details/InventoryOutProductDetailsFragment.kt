@@ -38,8 +38,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.vms.wizwarehouse.R
 import com.vms.wizwarehouse.databinding.FragmentInventoryOutProductDetailsBinding
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.InventoryInAdapter
-import com.vms.wizwarehouse.inventory_in.fragment_inventory_in_product_details.ProductImage
 import com.vms.wizwarehouse.inventory_out.distributer_details.ImageItem
 import com.vms.wizwarehouse.inventory_out.distributer_details.ImagePreviewAdapter
 import com.vms.wizwarehouse.utils.Utility
@@ -50,7 +48,8 @@ import java.util.Locale
 
 class InventoryOutProductDetailsFragment : Fragment() {
     private lateinit var _binding: FragmentInventoryOutProductDetailsBinding
-//    var productCategory: Spinner? = null
+
+    //    var productCategory: Spinner? = null
 //    var productSubCategory: Spinner? = null
 //    var productName: Spinner? = null
 //    var itemNumber: EditText? = null
@@ -65,7 +64,7 @@ class InventoryOutProductDetailsFragment : Fragment() {
     var fusedLocationClient: FusedLocationProviderClient? = null
     private var currentAddress = ""
 
-//    private var recyclerProductImages: RecyclerView? = null
+    //    private var recyclerProductImages: RecyclerView? = null
     private val productImages = mutableListOf<ImageItem>()
     private var productAdapter: ImagePreviewAdapter? = null
 
@@ -127,13 +126,16 @@ class InventoryOutProductDetailsFragment : Fragment() {
 //        productName!!.adapter = productNameAdapter
 
 //        recyclerProductImages = binding.recyclerProductImages
-        productAdapter = ImagePreviewAdapter(requireContext(), productImages, object : ImagePreviewAdapter.OnImageRemoveListener {
-            override fun onRemove(pos: Int) {
-                if (productImages.isEmpty()) {
-                    // show empty placeholder
+        productAdapter = ImagePreviewAdapter(
+            requireContext(),
+            productImages,
+            object : ImagePreviewAdapter.OnImageRemoveListener {
+                override fun onRemove(pos: Int) {
+                    if (productImages.isEmpty()) {
+                        // show empty placeholder
+                    }
                 }
-            }
-        })
+            })
 
 //        recyclerProductImages!!.layoutManager =
 //            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -328,7 +330,8 @@ class InventoryOutProductDetailsFragment : Fragment() {
             return
         }
 
-        val builderFragmentOne = AlertDialog.Builder(requireContext(), R.style.TransparentAlertDialog)
+        val builderFragmentOne =
+            AlertDialog.Builder(requireContext(), R.style.TransparentAlertDialog)
         builderFragmentOne.setView(dialogViewFragmentOne)
         builderFragmentOne.setCancelable(false)
         val alertDialog = builderFragmentOne.create()
@@ -374,7 +377,8 @@ class InventoryOutProductDetailsFragment : Fragment() {
         val editManufacturingDate = dialogView.findViewById<TextView>(R.id.edit_manufacturing_date)
         val btnAdd = dialogView.findViewById<Button>(R.id.btn_add)
         val cameraProduct = dialogView.findViewById<ImageView>(R.id.camera_product_img_out)
-        val recyclerProductImages = dialogView.findViewById<RecyclerView>(R.id.recycler_product_images_2)
+        val recyclerProductImages =
+            dialogView.findViewById<RecyclerView>(R.id.recycler_product_images_2)
 
         // product images list
         productAdapter = ImagePreviewAdapter(
@@ -385,7 +389,8 @@ class InventoryOutProductDetailsFragment : Fragment() {
                     }
                 }
             })
-        recyclerProductImages.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerProductImages.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerProductImages.adapter = productAdapter
 
         // camera click
@@ -394,7 +399,8 @@ class InventoryOutProductDetailsFragment : Fragment() {
         // date picker
         editManufacturingDate.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val datePicker = DatePickerDialog(requireContext(),
+            val datePicker = DatePickerDialog(
+                requireContext(),
                 { _, selectedYear, selectedMonth, selectedDay ->
                     val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
                     val selectedCalendar = Calendar.getInstance()
@@ -409,9 +415,21 @@ class InventoryOutProductDetailsFragment : Fragment() {
         }
 
         // spinners (static for now)
-        spinCategory.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listOf("Electronics", "Furniture", "Food"))
-        spinSubCategory.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listOf("Laptop", "Chair", "Snacks"))
-        spinProductName.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listOf("Dell XPS", "Office Chair", "Chips"))
+        spinCategory.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            listOf("Electronics", "Furniture", "Food")
+        )
+        spinSubCategory.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            listOf("Laptop", "Chair", "Snacks")
+        )
+        spinProductName.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            listOf("Dell XPS", "Office Chair", "Chips")
+        )
 
 
         // Add button
@@ -422,7 +440,7 @@ class InventoryOutProductDetailsFragment : Fragment() {
                 productName = spinProductName.selectedItem?.toString() ?: "",
                 date = editManufacturingDate.text.toString(),
                 itemNumber = editItemNumber.text.toString(),
-                images =  productImages.map { imageItem ->
+                images = productImages.map { imageItem ->
                     ProductImageOut(imageItem.uri)
                 }
             )
