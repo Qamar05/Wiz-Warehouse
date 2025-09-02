@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".inventory_out.DistributeInventoryActivity">
+    tools:context=".inventory_in_history.InventoryInHistoryActivity">
 
     <!-- Main Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +43,7 @@
             android:id="@+id/txt_survey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/inventory_out"
+            android:text="@string/inventory"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginStart="10dp"
@@ -86,16 +86,81 @@
                 android:src="@drawable/arrow_drop_down" />
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/spin_filter"
+            app:layout_constraintBottom_toBottomOf="@id/spin_filter"
+            app:layout_constraintStart_toStartOf="@id/img_back"
+            android:text="@string/history"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            />
+
+        <Spinner
+            android:id="@+id/spin_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_previous_bg"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txt_add"
+            app:layout_constraintTop_toTopOf="@id/txt_add" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/baseline_keyboard_arrow_down_24"
+            app:layout_constraintBottom_toBottomOf="@id/spin_filter"
+            app:layout_constraintEnd_toEndOf="@id/spin_filter"
+            app:layout_constraintTop_toTopOf="@id/spin_filter" />
+
+        <TextView
+            android:id="@+id/txt_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_previous_bg"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="@string/add"
+            android:textColor="@color/purple_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_top" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_inventory_history"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="-20dp"
-            android:layout_marginBottom="40dp"
+            android:paddingTop="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_top" />
+            app:layout_constraintTop_toBottomOf="@id/spin_filter" />
+
+        <TextView
+            android:id="@+id/txt_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerview_inventory_history"
+             />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

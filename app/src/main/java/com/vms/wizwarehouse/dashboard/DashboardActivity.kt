@@ -1,10 +1,12 @@
 package com.vms.wizwarehouse.dashboard
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,21 +21,25 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.gms.location.LocationServices
 import com.vms.wizactivity.retrofit.RetrofitBuilder
 import com.vms.wizwarehouse.R
-import com.vms.wizwarehouse.add_inventory.AddInventoryActivity
+import com.vms.wizwarehouse.inventory_in.InventoryInActivity
 import com.vms.wizwarehouse.camera.CameraActivity
 import com.vms.wizwarehouse.databinding.ActivityDashboardBinding
-import com.vms.wizwarehouse.distribute_history.DistributeHistoryActivity
-import com.vms.wizwarehouse.distribute_inventory.DistributeInventoryActivity
-import com.vms.wizwarehouse.inventory_history.InventoryHistoryActivity
+import com.vms.wizwarehouse.inventory_out_history.InventoryOutHistoryActivity
+import com.vms.wizwarehouse.inventory_out.DistributeInventoryActivity
+import com.vms.wizwarehouse.inventory_in_history.InventoryInHistoryActivity
 import com.vms.wizwarehouse.login.LoginActivity
 import com.vms.wizwarehouse.ota.UpdateChecker
+import com.vms.wizwarehouse.pending_return.PendingReturnActivity
 import com.vms.wizwarehouse.refresh.RefreshTokenRequest
 import com.vms.wizwarehouse.refresh.RefreshTokenResponse
 import com.vms.wizwarehouse.reports.ReportsActivity
 import com.vms.wizwarehouse.retrofit.ApiService
 import com.vms.wizwarehouse.steps_to_update.StepsToUpdateActivity
+import com.vms.wizwarehouse.today_activity.TodayActivityActivity
+import com.vms.wizwarehouse.total_stock.TotalStockActivity
 import com.vms.wizwarehouse.utils.Const
 import com.vms.wizwarehouse.utils.LoaderUtils
 import com.vms.wizwarehouse.utils.SharedPreferenceUtils
@@ -45,6 +51,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
+import java.util.Locale
 
 class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
@@ -74,12 +81,17 @@ class DashboardActivity : AppCompatActivity() {
     var distribute: ConstraintLayout? = null
     var returnStock: ConstraintLayout? = null
     var version: TextView? = null
-
+    private val LOCATION_PERMISSION_REQUEST = 1001
+    private lateinit var totalStockView: ConstraintLayout
+    private lateinit var stockAssignedView: ConstraintLayout
+    private lateinit var pendingReturnView: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        checkLocationPermission()
 
         LoaderUtils.initLoader(this)
         requestPermissions()
@@ -91,6 +103,9 @@ class DashboardActivity : AppCompatActivity() {
         appVersion = binding.txtVersionName
         email = binding.navTxtEmailDashboard
         fullName = binding.navTxtNameDashboard
+        totalStockView = binding.layoutTotalStock
+        stockAssignedView = binding.layoutStockAssigned
+        pendingReturnView = binding.layoutPendingReturn
 
         //__________________________________________________________________
         locationRefresh = binding.imgRefreshLocation
@@ -105,10 +120,34 @@ class DashboardActivity : AppCompatActivity() {
         returnStock = binding.layoutReturn
         version = binding.txtVersion
 
+        totalStockView.setOnClickListener {
+            val intent = Intent(this@DashboardActivity, TotalStockActivity::class.java)
+            startActivity(intent)
+        }
+
+        stockAssignedView.setOnClickListener {
+            val intent = Intent(this@DashboardActivity, InventoryOutHistoryActivity::class.java)
+            startActivity(intent)
+        }
+
+        pendingReturnView.setOnClickListener {
+            val intent = Intent(this@DashboardActivity, InventoryOutHistoryActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.layoutActivity.setOnClickListener {
+            val intent = Intent(this@DashboardActivity, TodayActivityActivity::class.java)
+            startActivity(intent)
+        }
+
+        locationRefresh?.setOnClickListener {
+            fetchLocationAndAddress()
+        }
+
         inventory!!.setOnClickListener { view: View? ->
             val intent = Intent(
                 this@DashboardActivity,
-                AddInventoryActivity::class.java
+                InventoryInActivity::class.java
             )
             startActivity(intent)
         }
@@ -117,6 +156,14 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(
                 this@DashboardActivity,
                 DistributeInventoryActivity::class.java
+            )
+            startActivity(intent)
+        }
+
+        returnStock!!.setOnClickListener {
+            val intent = Intent(
+                this@DashboardActivity,
+                InventoryOutHistoryActivity::class.java
             )
             startActivity(intent)
         }
@@ -142,7 +189,7 @@ class DashboardActivity : AppCompatActivity() {
             drawerLayout!!.closeDrawer(GravityCompat.START)
             val intent = Intent(
                 this@DashboardActivity,
-                InventoryHistoryActivity::class.java
+                InventoryInHistoryActivity::class.java
             )
             startActivity(intent)
         }
@@ -151,7 +198,7 @@ class DashboardActivity : AppCompatActivity() {
             drawerLayout!!.closeDrawer(GravityCompat.START)
             val intent = Intent(
                 this@DashboardActivity,
-                DistributeHistoryActivity::class.java
+                InventoryOutHistoryActivity::class.java
             )
             startActivity(intent)
         }
@@ -637,5 +684,55 @@ class DashboardActivity : AppCompatActivity() {
         )
     }
 
+    private fun checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST
+            )
+        } else {
+            fetchLocationAndAddress()
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun fetchLocationAndAddress() {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                val geocoder = Geocoder(this, Locale.getDefault())
+                val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                if (!addresses.isNullOrEmpty()) {
+                    val address = addresses[0].getAddressLine(0)
+                    locationAddress?.text = address   // ✅ Update your TextView here
+                } else {
+                    locationAddress?.text = "Unable to fetch address"
+                }
+            } else {
+                locationAddress?.text = "Location not found"
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == LOCATION_PERMISSION_REQUEST &&
+            grantResults.isNotEmpty() &&
+            grantResults[0] == PackageManager.PERMISSION_GRANTED
+        ) {
+            fetchLocationAndAddress()
+        } else {
+            Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }

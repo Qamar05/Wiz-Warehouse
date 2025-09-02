@@ -84,27 +84,43 @@
             android:exported="false" />
 
         <activity
-            android:name=".add_inventory.AddInventoryActivity"
+            android:name=".inventory_in.InventoryInActivity"
             android:exported="false" />
 
         <activity
-            android:name=".distribute_inventory.DistributeInventoryActivity"
+            android:name=".inventory_out.DistributeInventoryActivity"
             android:exported="false" />
 
         <activity
-            android:name=".distribute_history.DistributeHistoryActivity"
+            android:name=".inventory_out_history.InventoryOutHistoryActivity"
             android:exported="false" />
 
         <activity
-            android:name=".inventory_history.InventoryHistoryActivity"
+            android:name=".inventory_in_history.InventoryInHistoryActivity"
             android:exported="false" />
 
         <activity
-            android:name=".inventory_view_details.ViewInventoryDetailsActivity"
+            android:name=".inventory_in_view_details.ViewInventoryInDetailsActivity"
             android:exported="false" />
 
         <activity
-            android:name=".distribute_view_details.ViewDistributeDetailsActivity"
+            android:name=".inventory_out_view_details.ViewInventoryOutDetailsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".return_inventory.ReturnInventoryActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".total_stock.TotalStockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".pending_return.PendingReturnActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".today_activity.TodayActivityActivity"
             android:exported="false" />
 
     </application>

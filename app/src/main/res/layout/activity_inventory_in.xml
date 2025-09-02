@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".inventory_out.DistributeInventoryActivity">
+    tools:context=".inventory_in.InventoryInActivity">
 
     <!-- Main Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,13 +43,13 @@
             android:id="@+id/txt_survey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/inventory_out"
+            android:text="@string/inventory_in"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@id/img_back"
             app:layout_constraintStart_toEndOf="@id/img_back"
-            app:layout_constraintTop_toTopOf="@id/img_back" />
+            app:layout_constraintTop_toTopOf="@id/img_back"/>
 
         <LinearLayout
             android:id="@+id/layout_navigation"

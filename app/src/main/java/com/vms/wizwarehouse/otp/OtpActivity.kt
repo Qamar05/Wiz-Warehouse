@@ -119,7 +119,7 @@ class OtpActivity : AppCompatActivity() {
                     SharedPreferenceUtils.saveBoolean(this@OtpActivity, SharedPreferenceUtils.IS_SUPERVISOR, response.role == "supervisor")
                     SharedPreferenceUtils.saveBoolean(this@OtpActivity, SharedPreferenceUtils.IS_LOGGED_IN_WAREHOUSE, true)
 
-                    if (response.role == "warehouseManager" ) {
+                    if (response.role == "fwp" ) {
                         startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
                         finish()
                     } else {

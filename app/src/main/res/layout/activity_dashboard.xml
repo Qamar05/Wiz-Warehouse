@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:text="@string/h_59_vms_techs_block_h_sector_63_noida_201301_uttar_pradesh"
+                        android:text=""
                         android:textColor="@color/light_grey" />
 
                 </LinearLayout>

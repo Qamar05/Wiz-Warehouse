@@ -214,8 +214,22 @@
     <string name="activity">Activity</string>
     <string name="noida">Noida</string>
     <string name="item_number">Item number</string>
+    <string name="unit_of_measurement">Unit Of Measurement</string>
+    <string name="mode_of_transport">Mode Of Transport</string>
+    <string name="date_of_manufacture">Date of Manufacture</string>
+    <string name="inventory_in">Inventory In</string>
+    <string name="inventory_out">Inventory Out</string>
+    <string name="inventory_return">Inventory Return</string>
+    <string name="laptop">Laptop</string>
+    <string name="perishable">Perishable</string>
+    <string name="_30_units">30 units</string>
+    <string name="_35_packets">35 packets</string>
+    <string name="_24_9_2025">24-9-2025</string>
+    <string name="product">Product</string>
+    <string name="nature">Nature</string>
+    <string name="last_updated">Last Updated</string>
     <string-array name="filter_options">
-        <item>Select Filter</item>
+        <item>All</item>
         <item>Single Date</item>
         <item>Date Range</item>
     </string-array>

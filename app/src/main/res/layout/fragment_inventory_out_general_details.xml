@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".inventory_out.distributer_details.DistributeDetailsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_distribute_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/general_details"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/spin_activity"
+                app:layout_constraintTop_toTopOf="@id/constraint_1" />
+
+            <TextView
+                android:id="@+id/txt_select_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/select_activity"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txt_distribute_details"
+                app:layout_constraintTop_toBottomOf="@id/txt_distribute_details" />
+
+            <Spinner
+                android:id="@+id/spin_activity"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_background"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/txt_select_activity"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/img_down"
+                android:src="@drawable/baseline_keyboard_arrow_down_24"
+                app:layout_constraintBottom_toBottomOf="@id/spin_activity"
+                app:layout_constraintEnd_toEndOf="@id/spin_activity"
+                app:layout_constraintTop_toTopOf="@id/spin_activity" />
+
+            <TextView
+                android:id="@+id/txt_supervisor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/_2_supervisor_s_name"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txt_select_activity"
+                app:layout_constraintTop_toBottomOf="@id/spin_activity" />
+
+            <TextView
+                android:id="@+id/edit_supervisor"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/txt_supervisor"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <TextView
+                android:id="@+id/txt_supervisor_signature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/_4_supervisor_s_signature"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txt_supervisor"
+                app:layout_constraintTop_toBottomOf="@id/recycler_receiver_images" />
+
+            <ImageView
+                android:id="@+id/img_signature"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edit_text_background"
+                android:contentDescription="@string/signature"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/txt_supervisor_signature"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <TextView
+                android:id="@+id/txt_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_add_bg"
+                android:gravity="center"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/add"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/img_signature"
+                app:layout_constraintEnd_toEndOf="@id/img_signature"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/img_signature"
+                app:layout_constraintTop_toTopOf="@id/img_signature"
+                app:layout_constraintVertical_bias="0.95" />
+
+            <TextView
+                android:id="@+id/txt_supervisor_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/_3_supervisor_s_image"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txt_supervisor"
+                app:layout_constraintTop_toBottomOf="@id/edit_supervisor" />
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/edit_supervisor_img"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:background="@drawable/edit_text_background"-->
+            <!--                android:paddingStart="10dp"-->
+            <!--                android:paddingTop="10dp"-->
+            <!--                android:paddingEnd="5dp"-->
+            <!--                android:paddingBottom="10dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="@id/constraint_1"-->
+            <!--                app:layout_constraintStart_toStartOf="@id/constraint_1"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/txt_supervisor_img"-->
+            <!--                app:layout_constraintWidth_percent="0.9" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_receiver_images"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_background"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/txt_supervisor_img"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <ImageView
+                android:id="@+id/camera_supervisor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/camera"
+                android:src="@drawable/baseline_camera_alt_24"
+                app:layout_constraintBottom_toBottomOf="@id/recycler_receiver_images"
+                app:layout_constraintEnd_toEndOf="@id/recycler_receiver_images"
+                app:layout_constraintTop_toTopOf="@id/recycler_receiver_images" />
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_bg"
+                android:text="@string/next"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/img_signature"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <TextView
+                android:id="@+id/txt_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/constraint_1"
+                app:layout_constraintStart_toStartOf="@id/constraint_1"
+                app:layout_constraintTop_toBottomOf="@id/btn_next" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</FrameLayout>
